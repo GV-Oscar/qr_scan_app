@@ -1,17 +1,53 @@
 name: qr_scan_app
+
 packages:
-  - app/*
-  - packages/*
+  - app/**
+  - packages/**
+
 scripts:
-  build:
-    description: "Build all packages"
-    run: melos exec -c 1 -- flutter pub get
   bootstrap:
-    run: flutter pub get
-    description: Instala las dependencias de todos los paquetes.
+    run: melos exec -c 5 -- flutter pub get
+    description: "Instala las dependencias de todos los paquetes en paralelo para mayor eficiencia."
+
+  clean:
+    run: melos exec -- flutter clean
+    description: "Limpia la caché de compilación en todos los paquetes."
+
+  format:
+    run: melos exec -- dart format . --set-exit-if-changed
+    description: "Asegura que el código esté formateado correctamente."
+
+  analyze:
+    run: melos exec -- flutter analyze
+    description: "Ejecuta el analizador de código en todos los paquetes."
+
   test:
-    run: flutter test
-    description: Ejecuta las pruebas unitarias en todos los paquetes.
-  build:
-    run: flutter build apk && flutter build ios
-    description: Compila la aplicación para Android e iOS.
+    run: melos exec -- flutter test --no-pub
+    description: "Ejecuta pruebas unitarias en todos los paquetes."
+
+  test_coverage:
+    run: |
+      melos exec -- flutter test --coverage
+      melos exec -- genhtml coverage/lcov.info -o coverage/html
+    description: "Ejecuta pruebas con cobertura y genera reportes HTML."
+
+  build_android:
+    run: melos exec -- flutter build apk
+    description: "Compila la aplicación para Android."
+
+  build_ios:
+    run: melos exec -- flutter build ios
+    description: "Compila la aplicación para iOS."
+
+  build_all:
+    run: melos run build_android && melos run build_ios
+    description: "Compila la aplicación para Android e iOS."
+
+  build_runner:
+    run: melos exec -- dart run build_runner build --delete-conflicting-outputs
+    description: "Ejecuta build_runner en todos los paquetes con código generado."
+
+  generate_code:
+    run: melos run build_runner
+    description: "Alias para build_runner, útil para generar código desde Freezed, JsonSerializable, etc."
+
