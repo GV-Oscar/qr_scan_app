@@ -2,3 +2,7 @@ name: qr_scan_app
 packages:
   - apps/*
   - packages/*
+scripts:
+  build:
+    description: "Build all packages"
+    run: melos exec -c 1 -- flutter pub get
