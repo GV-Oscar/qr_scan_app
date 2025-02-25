@@ -1,8 +1,10 @@
 name: qr_scan_app
 
 packages:
-  - app/**
-  - packages/**
+  - packages/core
+  - packages/qr_scan
+  - packages/biometric_auth
+  - app
 
 scripts:
   bootstrap:
