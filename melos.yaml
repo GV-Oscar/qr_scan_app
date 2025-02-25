@@ -6,3 +6,12 @@ scripts:
   build:
     description: "Build all packages"
     run: melos exec -c 1 -- flutter pub get
+  bootstrap:
+    run: flutter pub get
+    description: Instala las dependencias de todos los paquetes.
+  test:
+    run: flutter test
+    description: Ejecuta las pruebas unitarias en todos los paquetes.
+  build:
+    run: flutter build apk && flutter build ios
+    description: Compila la aplicación para Android e iOS.

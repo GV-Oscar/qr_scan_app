@@ -28,35 +28,21 @@ Antes de comenzar, asegúrate de tener instaladas las siguientes herramientas:
 
 ---
 
-## **Clonar el Repositorio**
-
-1. Abre una terminal y clona el repositorio:
-   ```bash
-   git clone https://github.com/tu-usuario/qr_scan_app.git
-   ```
-
-2. Navega a la carpeta del proyecto:
-   ```bash
-   cd qr_scan_app
-   ```
-
----
-
-## **Configurar el Entorno**
-
-### **1. Instalar Dependencias**
-
-Este proyecto utiliza **Melos** para gestionar los paquetes en un monorepo. Para instalar las dependencias de todos los paquetes, ejecuta:
-
-```bash
-melos bootstrap
+## **🎯 Flujo de Trabajo Recomendado**
+Cuando trabajes en el proyecto, sigue este orden de comandos para evitar errores y mantener un código limpio:  
+```sh
+melos bootstrap       # Instalar dependencias  
+melos clean           # Limpiar caché  
+melos format          # Formatear código  
+melos analyze         # Revisar errores  
+melos test            # Ejecutar pruebas  
+melos generate_code   # Generar código si usas Freezed, JsonSerializable, etc.  
+melos build_all       # Compilar app para Android e iOS  
 ```
 
-Este comando se encargará de obtener todas las dependencias necesarias para cada paquete.
-
 ---
 
-### **2. Estructura del Proyecto**
+### **Estructura del Proyecto**
 
 El proyecto está organizado en un monorepo con la siguiente estructura:
 
@@ -70,26 +56,6 @@ qr_scan_app/
 ├── melos.yaml            # Configuración de Melos para el monorepo
 ├── README.md             # Documentación del proyecto
 ```
-
----
-
-### **3. Ejecutar la Aplicación**
-
-1. **Navega a la carpeta de la aplicación principal**:
-   ```bash
-   cd app
-   ```
-
-2. **Ejecuta la aplicación**:
-   - Para Android:
-     ```bash
-     flutter run
-     ```
-   - Para iOS:
-     ```bash
-     flutter run
-     ```
-     **Nota**: Para iOS, asegúrate de abrir el proyecto en Xcode (`ios/Runner.xcworkspace`) y configurar el equipo de desarrollo antes de ejecutar.
 
 ---
 
