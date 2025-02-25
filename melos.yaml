@@ -1,0 +1,4 @@
+name: qr_scan_app
+packages:
+  - apps/*
+  - packages/*
