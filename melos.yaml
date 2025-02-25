@@ -1,6 +1,6 @@
 name: qr_scan_app
 packages:
-  - apps/*
+  - app/*
   - packages/*
 scripts:
   build:
